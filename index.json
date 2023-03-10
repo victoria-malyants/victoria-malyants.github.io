@@ -1,12 +1,6 @@
-// let form = document.forms.first;
-// let answer = form.elements.one;
-// answer.onchange = () => {
-//     console.log(answer.value);
-// }
-
-const data = [
+[
     {
-        "pageTitle": "Зарплата, сбережения, количество взрослых в семье, количество детей, количество домашних питомцев, жилье",
+        "pageTitle": "Зарплата, сбережения, кол-во взрослых в семье(родители + другие родственники), кол-во детей, кол-во домашних питомцев, жилье",
         "questions": [
             {
                 "id": 0,
@@ -31,8 +25,7 @@ const data = [
             {
                 "id": 4,
                 "question": "Введите количество домашних животных в семье",
-                "placeholder": "Введите сумму",
-                "isRequired": false
+                "placeholder": "Введите сумму"
             }
         ]
     },
@@ -143,44 +136,3 @@ const data = [
         ]
     }
 ]
-
-
-function currentTitle(pageNumber) {
-    return data[pageNumber].pageTitle;
-}
-
-
-function currentContent(pageNumber){
-    return data[pageNumber].questions.map((question) => {
-        return `<div class="question">
-                    <p>${question.question}</p>
-                    <input name=${question.id} value="" placeholder=${question.placeholder} required=${question.isRequired}>
-                </div>`;
-    }).join("");
-}
-
-let PAGE_NUMBER = 0;
-const title = document.querySelector(".title");
-title.innerHTML = currentTitle(PAGE_NUMBER);
-
-const content = currentContent(PAGE_NUMBER);
-
-const submitButton = `<input type="submit" value="Дальше" class="submit" onClick=${PAGE_NUMBER++}>`;
-
-let form = document.forms.first;
-let answers = {};
-
-form.innerHTML = content + submitButton;
-
-function saveInputValue(id, value) {
-    console.log(id, value);
-    answers[id] = value;
-    console.log(answers);
-}
-
-const inputs = form.elements;
-for (let input of inputs) {
-    input.onchange = () => {
-        saveInputValue(input.name, input.value)
-    }
-}
